@@ -8,6 +8,7 @@ export default gql`
   type DictionaryWord {
     word: String!
     entries: [DictionaryEntry]
+    translations: [String]
   }
 
   type DictionaryEntry {

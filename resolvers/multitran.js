@@ -24,7 +24,10 @@ export async function getMultitranTranslation(source, lang = 'de') {
   )
   sections = _.map(trs, (section, i) => (
     section.type != 'section' ? null :
-      { i: i, word: section.section, entries: _.slice(trs, i + 1) |> (trs => _.takeWhile(trs, { type: 'translations' })) }
+      { word: section.section, 
+        entries: _.slice(trs, i + 1) |> (trs => _.takeWhile(trs, { type: 'translations' })),
+        translations: _.slice(trs, i + 1) |> (trs => _.takeWhile(trs, { type: 'translations' })) |> (trs => _.map(trs, 'translations')) |> _.flatten |> _.uniq
+      }
   )) |> _.compact;
 
   return sections;
