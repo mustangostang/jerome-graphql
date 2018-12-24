@@ -67,6 +67,8 @@ custom:
 functions:
   graphql:
     handler: handler.graphqlHandler
+    timeout: 20
+    memorySize: 512
     events:
     - http:
         path: graphql

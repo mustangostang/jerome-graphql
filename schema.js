@@ -2,8 +2,9 @@ import { gql } from 'apollo-server-lambda';
 
 export default gql`
   type Query {
-    getMultitranTranslation(source: String!, lang: String): [DictionaryWord],
-    getWhitaker(source: String!): [LatinWord],
+    getMultitranTranslation(word: String!, lang: String): [DictionaryWord],
+    getWhitaker(word: String!): [LatinWord],
+    getDvoretsky(word: String!): RussianTranslation,
   }
 
   type DictionaryWord {
@@ -26,6 +27,12 @@ export default gql`
   type LatinWordForm {
     partOfSpeech: String!
     form: String!
+  }
+
+  type RussianTranslation {
+    word: String!
+    form: String
+    translations: [String]
   }
 
 `
