@@ -37,3 +37,7 @@ export function getLatinForm(obj, arg) {
   const entry = { partOfSpeech, form }
   return entry[arg];
 }
+
+export function getLatinRootForm(obj) {
+  return _.split(obj.entry, ',') |> _.first;
+}

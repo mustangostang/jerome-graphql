@@ -20,8 +20,10 @@ export default gql`
 
   type LatinWord {
     forms: [LatinWordForm]
+    rootForm: String!
     entry: String!
     translation: String!
+    russianTranslation: RussianTranslation
   }
 
   type LatinWordForm {

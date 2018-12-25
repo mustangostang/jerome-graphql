@@ -5,7 +5,6 @@ import latin from '../data/latin.json'
 
 const fetchData = async (id, word) => {
   const response = await axios.get(`https://dic.academic.ru/dic.nsf/latin_rus/${id}/${word}`, { headers: { 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36' }});
-  console.log('Response', response.status, response.data, response);
   return response.data;
 };
 
