@@ -23,7 +23,8 @@ export default gql`
     rootForm: String!
     entry: String!
     translation: String!
-    russianTranslation: RussianTranslation
+    russian: RussianTranslation
+    logeion: LogeionTranslation
   }
 
   type LatinWordForm {
@@ -35,6 +36,12 @@ export default gql`
     word: String!
     form: String
     translations: [String]
+  }
+
+  type LogeionTranslation {
+    headword: String!
+    shortdef: String
+    lewisshort: String
   }
 
 `

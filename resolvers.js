@@ -1,6 +1,7 @@
 import { getMultitranTranslation } from './resolvers/multitran';
 import { getWhitaker, getLatinForm, getLatinRootForm } from './resolvers/whitaker';
 import { getDvoretsky } from './resolvers/dvoretsky';
+import { getLogeion } from './resolvers/logeion';
 
 export const resolvers = {
   Query: {
@@ -10,7 +11,8 @@ export const resolvers = {
   },
   LatinWord: {
     rootForm: (obj) => getLatinRootForm(obj),
-    russianTranslation: (obj) => obj |> getLatinRootForm |> getDvoretsky
+    russian: (obj) => obj |> getLatinRootForm |> getDvoretsky,
+    logeion: (obj) => obj |> getLatinRootForm |> getLogeion,
   },
   LatinWordForm: {
     partOfSpeech: (obj) => getLatinForm(obj, 'partOfSpeech'),
