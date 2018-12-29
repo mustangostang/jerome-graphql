@@ -18,11 +18,12 @@ export async function getDvoretsky(word) {
   data = await fetchData(id, word);
   const doc = data |> cheerio.load;
   const entries = _.split(('.descript' |> doc).text(), "\n")
+  const filteredEntries = _.filter(entries, e => e |> _.trim)
 
   return {
     word: word,
     id: Number(id),
-    form: entries[0],
-    translations: _.slice(entries, 1)
+    form: filteredEntries[0],
+    translations: _.slice(filteredEntries, 1)
   }
 }
