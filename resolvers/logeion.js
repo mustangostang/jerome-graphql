@@ -11,7 +11,7 @@ export async function getLogeion(word) {
   const detail = data.detail;
   return { 
     headword: detail.headword, shortdef: detail.shortdef |> _.first, 
-    lewisshort: (detail.lewisshort |> _.first).replace(/<(?:.|\n)*?>/gm, '')
+    lewisshort: String(detail.lewisshort |> _.first).replace(/<(?:.|\n)*?>/gm, '')
   }
 }
 

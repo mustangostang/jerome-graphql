@@ -7,6 +7,7 @@ const slsw = require('serverless-webpack');
 module.exports = {
   entry: slsw.lib.entries,
   target: 'node',
+  devtool:  slsw.lib.options.stage === 'local' ? 'eval' : false,
   externals: [nodeExternals()],
   module: {
     rules: [

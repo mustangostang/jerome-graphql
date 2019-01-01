@@ -16,7 +16,7 @@ export async function getWhitaker(source) {
   for (i = 0; i < data.length; i++) {
     let line = data[i];
     if (/;/.test(line)) { word['translation'] = `${word['translation']}${line} `; continue; }
-    if (/,/.test(line)) { word['entry'] = line; continue; }
+    if (/,/.test(line) || /\[XXX/.test(line)) { word['entry'] = line; continue; }
     if (word['entry']) {
       word.translation = word.translation |> _.trim
       words.push(word);
@@ -39,5 +39,7 @@ export function getLatinForm(obj, arg) {
 }
 
 export function getLatinRootForm(obj) {
-  return _.split(obj.entry, ',') |> _.first;
+  const parts = _.split(obj.entry, ',')
+  if (parts.length > 1) { return parts |> _.first };
+  return _.split(obj.entry, ' ') |> _.first;
 }
