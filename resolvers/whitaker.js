@@ -12,15 +12,19 @@ export async function getWhitaker(source) {
   data = _.map(data, w => _.trim(w));
   
   let words = [];
-  let word = { forms: [], translation: '' };
+  let word = { forms: [], translation: '', notes: [] };
   for (i = 0; i < data.length; i++) {
     let line = data[i];
     if (/;/.test(line)) { word['translation'] = `${word['translation']}${line} `; continue; }
     if (/,/.test(line) || /\[XXX/.test(line)) { word['entry'] = line; continue; }
+    if (_.startsWith(line, 'Sync')) {
+      word.notes = _.concat(word.notes, [line]);
+      continue;
+    }
     if (word['entry']) {
       word.translation = word.translation |> _.trim
       words.push(word);
-      word = { forms: [], translation: '' };
+      word = { forms: [], translation: '', notes: [] };
     }
     word.forms = _.concat(word.forms, [line]);
   }
@@ -32,8 +36,12 @@ export async function getWhitaker(source) {
 
 export function getLatinForm(obj, arg) {
   const string = obj.substr(21);
-  const partOfSpeech = string.substr(0, 5) |> _.trim
-  const form = string.substr(5) |> _.trim
+  let partOfSpeech = string.substr(0, 5) |> _.trim
+  let form = string.substr(5) |> _.trim
+  if (partOfSpeech == string.substr(0, 5)) {
+    partOfSpeech = "";
+    form = obj |> _.trim
+  }
   const entry = { partOfSpeech, form }
   return entry[arg];
 }
