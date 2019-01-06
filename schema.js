@@ -19,8 +19,8 @@ export default gql`
   }
 
   type LatinWord {
-    forms: [LatinWordForm]
-    rootForm: String!
+    fullForms: [LatinWordForm]
+    forms: [String]
     entry: String!
     translation: String!
     russian: RussianTranslation
