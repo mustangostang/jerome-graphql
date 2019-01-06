@@ -19,11 +19,22 @@ export async function getDvoretsky(word) {
   const doc = data |> cheerio.load;
   const entries = _.split(('.descript' |> doc).text(), "\n")
   const filteredEntries = _.filter(entries, e => e |> _.trim)
+  const allEntries = _.slice(filteredEntries, 1);
+  const joinedEntries = _.concat([`${allEntries[0]} ${allEntries[1]}`], _.slice(allEntries, 2));
 
   return {
     word: word,
     id: Number(id),
     form: filteredEntries[0],
-    translations: _.slice(filteredEntries, 1)
+    entries: joinedEntries
   }
 }
+
+export function filterTranslations(entries) {
+  return _.filter(entries, e => e[1] === ')');
+}
+
+export function filterPhrases(entries) {
+  return _.filter(entries, e => e[1] !== ')');
+}
+

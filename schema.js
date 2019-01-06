@@ -36,6 +36,8 @@ export default gql`
     word: String!
     form: String
     translations: [String]
+    phrases: [String]
+    entries: [String]
   }
 
   type LogeionTranslation {
