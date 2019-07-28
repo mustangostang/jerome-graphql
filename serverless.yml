@@ -23,6 +23,7 @@ provider:
   name: aws
   runtime: nodejs8.10
   region: eu-west-1
+  profile: default
 
 plugins:
   - serverless-webpack
@@ -73,6 +74,14 @@ functions:
     - http:
         path: graphql
         method: post
+        cors: true
+    - http:
+        path: graphql
+        method: GET
+        cors: true
+    - http:
+        path: playground
+        method: any
         cors: true
 
 #    The following are a few example events you can configure
