@@ -7,7 +7,7 @@
     "cheerio": "^1.0.0-rc.2",
     "graphql": "^14.2.1",
     "graphql-tools": "^4.0.3",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.21",
     "windows-1251": "^1.0.0"
   },
   "devDependencies": {
